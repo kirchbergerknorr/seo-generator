@@ -1,0 +1,16 @@
+{
+    "name": "kirchbergerknorr/seo-generator",
+    "description": "SEO Generator",
+    "keywords": ["magento", "seo", "generator"],
+    "type": "magento-module",
+    "license":"OSL-3.0",
+    "authors": [
+        {
+            "name": "Aleksey Razbakov",
+            "email": "aleksey@razbakov.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
