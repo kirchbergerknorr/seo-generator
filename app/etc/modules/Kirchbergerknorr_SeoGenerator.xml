@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Kirchbergerknorr_SeoGenerator>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Kirchbergerknorr_SeoGenerator>
+    </modules>
+</config>

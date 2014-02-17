@@ -1,0 +1,79 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('seogenerator')->__('SeoGenerator') ?></h4>
+
+        <div class="form-buttons">
+            <button style="" onclick="ajaxGetProductIds()" class="scalable preview" type="button" id="preview-button">
+                <span><?php echo Mage::helper('seogenerator')->__('Generate Rules') ?></span></button>
+        </div>
+    </div>
+    <div class="fieldset ">
+        <input type="hidden" name="rule_id" id="rule_id" value="<?php echo $this->getRequest()->getParam('id') ?>"/>
+        <table class="form-list">
+            <tbody>
+            <tr>
+                <td class="label"><label
+                        for="limit_product"><?php echo Mage::helper('seogenerator')->__('Limit Product') ?> </label>
+                </td>
+                <td class="value"><input class="input-text" type="text" name="limit_product" id="limit_product"
+                                         value="10"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div id="rulePreview">
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function ajaxGetProductIds() {
+        $('rulePreview').update('');
+
+        new Ajax.Request(
+            "<?php  echo $this->getUrl('*/ajaxRule/getProductIds')?>", {
+                method: 'post',
+                parameters: {rule_id:<?php echo $this->getRequest()->getParam('id')?>, limit: $('limit_product').value},
+                onSuccess: function (transport) {
+                    jsonProductIdsRules = transport.responseText.evalJSON(true);
+                    jsonProductIdsRules.each(function (id, index) {
+                        ajaxGetRulePreview(id);
+                    });
+                }
+            }
+        );
+    }
+
+    function ajaxGetRulePreview(product_id) {
+        new Ajax.Request(
+            "<?php  echo $this->getUrl('*/ajaxRule/preview')?>", {
+                method: 'post',
+                parameters: {id: product_id, rule_id:<?php echo $this->getRequest()->getParam('id')?>},
+                onSuccess: function (transport) {
+                    var jsonResponse = transport.responseText.evalJSON(true);
+                    ;
+                    var html = '<span><b>Title:</b> ' + jsonResponse.rules_title + '</span><br>' +
+                        '<span><b>Description:</b> ' + jsonResponse.rules_description + '</span><br>'
+                        + '<span><b>Keywords: </b>' + jsonResponse.rules_keywords + '</span><br>';
+
+                    $('rulePreview').insert('<p>' + html + '</p><hr>');
+                }
+            }
+        );
+    }
+
+
+    var RulesAjax = Class.create();
+    RulesAjax.prototype = {
+        initialize: function () {
+
+        },
+
+        getRulesPreview: function (product_id) {
+
+        }
+    }
+</script>

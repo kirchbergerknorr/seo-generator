@@ -1,0 +1,34 @@
+<?php $key = Mage::getSingleton('core/session')->getFormKey(); ?>
+<form id='rules-form' action="/index.php/admin/seogenerator/createtags" method="post">
+    <h2><?php echo $this->__('Categories') ?></h2>
+    <input name="form_key" type="hidden" value="<?php echo $key ?>"/>
+    <?php  $collectionRules = Mage::getModel('seogenerator/rules')->getCollection();
+    foreach ($collectionRules as $rule):
+        $_category = Mage::getModel('catalog/category')->load($rule->getCategoryId());?>
+        <?php if (strlen($_category->getName()) > 0) { ?>
+        <div>
+            <input type="checkbox" id="rule_<?php echo $rule->getRulesId() ?>" name="rule[]"
+                   value="<?php echo $rule->getCategoryId() ?>"/>
+            <label for="rule_<?php echo $rule->getRulesId() ?>"><?php echo $_category->getName() ?></label>
+        </div>
+    <?php } ?>
+    <?php endforeach; ?>
+    <hr>
+    <h2><?php echo $this->__('Options') ?></h2>
+
+    <div>
+        <input type="checkbox" id="rules_title" name="type[rules_title]" value="1"/>
+        <label for="rules_title"><?php echo $this->__('Meta Title') ?></label>
+    </div>
+    <div>
+        <input type="checkbox" id="rules_description" name="type[rules_description]" value="1"/>
+        <label for="rules_description"><?php echo $this->__('Meta Description') ?></label>
+    </div>
+    <div>
+        <input type="checkbox" id="rules_keywords" name="type[rules_keywords]" value="1"/>
+        <label for="rules_keywords"><?php echo $this->__('Meta Keywords') ?></label>
+    </div>
+
+    <button style="" class="scalable task" type="aubmit" id="id_zzz"><span><?php echo $this->__('Create') ?></span>
+    </button>
+</form>
