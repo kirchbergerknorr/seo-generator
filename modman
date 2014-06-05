@@ -2,6 +2,4 @@ app/etc/modules/*                                               app/etc/modules/
 app/code/local/Kirchbergerknorr/SeoGenerator/*                  app/code/local/Kirchbergerknorr/SeoGenerator/
 app/design/adminhtml/default/default/template/seogenerator/*    app/design/adminhtml/default/default/template/seogenerator/
 app/design/adminhtml/default/default/layout/*                   app/design/adminhtml/default/default/layout/
-app/locale/de_DE/*                                              app/locale/de_DE/
-app/locale/en_US/*                                              app/locale/en_US/
-app/locale/ru_RU/*                                              app/locale/ru_RU/
+app/locale/ru_RU/Kirchbergerknorr_SeoGenerator.csv              app/locale/ru_RU/Kirchbergerknorr_SeoGenerator.csv
